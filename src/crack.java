@@ -40,7 +40,7 @@ public class crack {
     //              well as their variations with numerical/symbolic substitutions.                            //
     //                                                                                                         //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//
     private static void validPasswords(PrintWriter pringus, char[] alphabet, char[] pw) throws FileNotFoundException {
 
 
