@@ -19,11 +19,11 @@ public class Dtrie extends Dnode {
 
     public void insert(String s) {
         char c;                                                 // Holds individual characters read from key
-        Dnode sub = new Dnode();                                 //
+        Dnode sub = new Dnode();                               //
         boolean subFlag = false;                              // False if current.getData() doesn't
-        Dnode current = root;                                 // Used to step through DLB branches, naturally starting at the root
+        Dnode current = root;                                // Used to step through DLB branches, naturally starting at the root
         StringBuilder key = new StringBuilder(s);           // Holds key in a mutable format for easier processing
-
+                                                           //
         for (int i = 0; i < key.length(); i++) {          // For every character of the specified key...
             c = key.charAt(i);                           // Get ith character.
             if(current.isEmpty()) {

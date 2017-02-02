@@ -1,4 +1,7 @@
-# CS/COE 1501 Project 1
+
+#########################
+# CS/COE 1501 Project 1 #
+#########################
 
 ##Goal:
 To demonstrate knowledge of both exhaustive search of a problem space and lookup search through the implementation of a very basic brute-force password cracker.

@@ -2,18 +2,18 @@ package DLB;
 
 public class Dnode
 {
-    private Node child, peer;  // References for Trie Navigation
+    private Dnode child, peer;  // References for Trie Navigation
     private boolean flag;     // True if empty, false if not
     private char data;       // Holds part of a key
 
     // Null Constructor //
-    public Node()
+    public Dnode()
     {
         flag = true;
     }
 
     // Initialization Constructor //
-    public Node(char data)
+    public Dnode(char data)
     {
         this.data = data;
         flag = false;
@@ -25,12 +25,12 @@ public class Dnode
         return this.data;
     }
 
-    public Node getPeer()
+    public Dnode getPeer()
     {
         return this.peer;
     }
 
-    public Node getChild()
+    public Dnode getChild()
     {
         return this.child;
     }
@@ -42,12 +42,12 @@ public class Dnode
         flag = false;
     }
 
-    public void setPeer(Node peer)
+    public void setPeer(Dnode peer)
     {
         this.peer = peer;
     }
 
-    public void setChild(Node child)
+    public void setChild(Dnode child)
     {
         this.child = child;
     }
