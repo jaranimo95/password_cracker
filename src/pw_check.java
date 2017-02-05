@@ -8,7 +8,7 @@ public class pw_check {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Dtrie t = badPasswords();                                                         // Populate a DLB trie with all illegal passwords from dictionary.txt
+        Dtrie badPasswords = badPasswords();                                              // Populate a DLB trie with all illegal passwords from dictionary.txt
 
         double start_time = System.currentTimeMillis();                                   // Base time used in calculating how long it takes to reach any given password during brute force enumeration
         StringBuilder password = new StringBuilder();                                     // We choose a StringBuilder for it's mutability while still retaining the functionality of a String object
@@ -23,7 +23,7 @@ public class pw_check {
         password.append(new char[] {'b','b','b','0','0'});                                                // Set password to first possible legal combination of characters
         int[] char_track = {0,0,0,24,24};                                                                 // Will help us keep track of what category (letter, number, or symbol) a given character of our password belongs to
                                                                                                           // Initialized to our password's corresponding addresses in the alphabet array (on a per character, that is)
-        pringus.print(password+","+Double.toString(System.currentTimeMillis() - start_time));         // Print password,time to all_passwords.txt
+        pringus.println(password+","+Double.toString(System.currentTimeMillis() - start_time));        // Print password,time to all_passwords.txt
        // Enumerate all possible passwords
         validPasswords(pringus,alphabet,char_track,start_time,password);
 
@@ -50,12 +50,59 @@ public class pw_check {
     //              well as their variations with numerical/symbolic substitutions.                            //
     //                                                                                                         //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///
-    private static void validPasswords(PrintWriter pringus, char[] alphabet, int[] char_track, double start_time, StringBuilder password) throws FileNotFoundException {
 
+    private static void validPasswords(PrintWriter printer, char[] alphabet, int[] char_track, double start_time, StringBuilder password) throws FileNotFoundException {
 
+        if(char_track[0] <= 23){                                                                          // If first character is a letter...                   ||  L----
+            if(char_track[1] <= 23) {                                                                         // If second character is a letter...              ||  LL---
+                if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||  LLL--
+                    if(char_track[3] > 23 && char_track[3] <= 31) {                                                   // If fourth character is a number...      ||  LLLN-
 
+                    }
+                    else if (char_track[3] > 31 && char_track[3] <= 37) {                                             // Else if fourth character is a symbol... ||  LLLS-
 
+                    } else {                                                                                          // Else your ass is oob.
+                        //return;
+                    }
+                }
+            }
+            else if(char_track[1] > 23 && char_track[1] <= 31) {                                              // If second character is a number...              ||  LN---
+                if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||  LNL--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...           ||  LNLL-
 
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...           ||  LNLS-
+
+                    } else {
+
+                    }
+                }
+                else if(char_track[2] > 23 && char_track[2] <= 31) {                                              // If third character is a number...           ||  LNN--
+
+                }
+                else if(char_track[2] > 31 && char_track[2] <= 37) {                                              // If third character is a symbol...           ||  LNS--
+
+                } else {
+
+                }
+            }
+            else if(char_track[1] > 31 && char_track[1] <= 37) {                                              // If second character is a symbol...              ||  LS---
+
+            } else {
+
+            }
+        }
+        else if (char_track[0] > 23 && char_track[0] <= 31) {                                             // Else if first character is a number...              ||  N----
+
+        }
+        else if (char_track[0] > 31 && char_track[0] <= 37){                                              // Else first character is a symbol...                 ||  S----
+
+        } else {                                                                                          // Else your ass is oob
+
+        }
+
+        printer.println(password+","+Double.toString(System.currentTimeMillis() - start_time));       // Print password,time to all_passwords.txt
+        validPasswords(printer,alphabet,char_track,start_time,password);                                  // Onto the next password!
+        return;
     }
-}
+}`
