@@ -154,13 +154,171 @@ public class pw_check {
                 } else;
             } else;
         }
+        /*
         else if (char_track[0] > 23 && char_track[0] <= 31) {                                             // Else if first character is a number...              ||  N----
+            if(char_track[1] <= 23) {                                                                         // If second character is a letter...              ||    NL---
+                if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||      NLL--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        NLLL-
 
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        NLLN-
+
+                    }
+                    else if (char_track[3] > 31 && char_track[3] <= 37) {                                             // If fourth character is a symbol...      ||        NLLS-
+
+                    } else;
+                }
+                else if(char_track[2] > 23 && char_track[2] <= 31) {                                              // If third character is a number...           ||      NLN--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        NLNL-
+
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...      ||        NLNS-
+
+                    } else;
+                }
+                else if(char_track[2] > 31 && char_track[2] <= 37) {                                              // If third character is a symbol...           ||      NLS--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        NLSL-
+
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        NLSN-
+
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...      ||        NLSS-
+
+                    } else;
+                } else;
+            }
+            else if(char_track[1] > 23 && char_track[1] <= 31) {                                              // If second character is a number...              ||    NN---
+                if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||      NNL--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        NNLL-
+
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...      ||        NNLS-
+
+                    } else;
+                }
+                else if(char_track[2] > 31 && char_track[2] <= 37) {                                              // If third character is a symbol...           ||      NNS--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        NNSL-
+
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...      ||        NNSS-
+
+                    }
+                } else;
+            }
+            else if(char_track[1] > 31 && char_track[1] <= 37) {                                              // If second character is a symbol...              ||    NS---
+                if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||      NSL--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        NSLL-
+
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        NSLN-
+
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...      ||        NSLS-
+
+                    }
+                    else;
+                }
+                else if(char_track[2] > 23 && char_track[2] <= 31) {                                              // If third character is a number...           ||      NSN--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        NSNL-
+
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37){                                               // If fourth character is a symbol...      ||        NSNS-
+
+                    } else;
+                }
+                else if(char_track[2] > 31 && char_track[2] <= 37) {                                              // If third character is a symbol...           ||      NSS--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        NSSL-
+
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        NSSN-
+
+                    }
+                } else;
+            } else;
         }
         else if (char_track[0] > 31 && char_track[0] <= 37){                                              // Else first character is a symbol...                 ||  S----
+            if(char_track[1] <= 23) {                                                                         // If second character is a letter...              ||    SL---
+                if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||      SLL--
+                    if(char_track[3] <= 23){                                                                          // If fourth character is a letter...      ||        SLLL-
 
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        SLLN-
+
+                    }
+                    else if (char_track[3] > 31 && char_track[3] <= 37) {                                             // If fourth character is a symbol...      ||        SLLS-
+
+                    } else;
+                }
+                else if(char_track[2] > 23 && char_track[2] <= 31) {                                              // If third character is a number...           ||      SLN--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        SLNL-
+
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        SLNN-
+
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...      ||        SLNS-
+
+                    } else;
+                }
+                else if(char_track[2] > 31 && char_track[2] <= 37) {                                              // If third character is a symbol...           ||      SLS--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        SLSL-
+
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        SLSN-
+
+                    } else;
+                } else;
+            }
+            else if(char_track[1] > 23 && char_track[1] <= 31) {                                              // If second character is a number...              ||    SN---
+                if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||      SNL--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        SNLL-
+
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        SNLN-
+
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...      ||        SNLS-
+
+                    } else;
+                }
+                else if(char_track[2] > 23 && char_track[2] <= 31) {                                              // If third character is a number...           ||      SNN--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        SNNL-
+
+                    }
+                    else if(char_track[3] > 31 && char_track[3] <= 37){                                               // If fourth character is a symbol...      ||        SNNS-
+
+                    }
+                }
+                else if(char_track[2] > 31 && char_track[2] <= 37) {                                              // If third character is a symbol...           ||      SNS--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        SNSL-
+
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        SNSN-
+
+                    }
+                } else;
+            }
+            else if(char_track[1] > 31 && char_track[1] <= 37) {                                              // If second character is a symbol...              ||    SS---
+                if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||      SSL--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        SSLL-
+
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        SSLN-
+
+                    } else;
+                }
+                else if(char_track[2] > 23 && char_track[2] <= 31) {                                              // If third character is a number...           ||      SSN--
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||        SSNL-
+
+                    }
+                    else if(char_track[3] > 23 && char_track[3] <= 31) {                                              // If fourth character is a number...      ||        SSNN-
+
+                    } else;
+                } else;
+            } else;
         } else;
-
+                   */
         // Search if password is in DLB of dictionary words, and if so, return
         printer.println(password+","+Double.toString(System.currentTimeMillis() - start_time));       // Print password,time to all_passwords.txt
         validPasswords(printer,alphabet,char_track,start_time,password);                                  // Onto the next password!
