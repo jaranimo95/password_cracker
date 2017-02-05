@@ -53,6 +53,16 @@ public class pw_check {
 
     private static void validPasswords(PrintWriter printer, char[] alphabet, int[] char_track, double start_time, StringBuilder password) throws FileNotFoundException {
 
+        // If 3 character categories can be legally enumerated for a given character in the password (ex. LL---, 3rd char can legally be a letter, number, or symbol),
+        //   simply enumerate all latter chars recursively within their given if statements (ex. for the 4th and 5th chars) and use password.append(alphabet[++char_track[i]],i,1);
+        //   to move to the next char in the alphabet array since all of them are legal for use
+
+        //password.append(alphabet[++char_track[0]],0,1); Figure out how to turn alphabet[++char_track[0]] into a char[] type
+        return;
+    }
+
+    /*private static void validPasswords(PrintWriter printer, char[] alphabet, int[] char_track, double start_time, StringBuilder password) throws FileNotFoundException {
+
         if(char_track[0] <= 23){                                                                          // If first character is a letter...                   ||  L----
             if(char_track[1] <= 23) {                                                                         // If second character is a letter...              ||  LL---
                 if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||  LLL--
@@ -68,10 +78,10 @@ public class pw_check {
             }
             else if(char_track[1] > 23 && char_track[1] <= 31) {                                              // If second character is a number...              ||  LN---
                 if(char_track[2] <= 23) {                                                                         // If third character is a letter...           ||  LNL--
-                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...           ||  LNLL-
+                    if(char_track[3] <= 23) {                                                                         // If fourth character is a letter...      ||  LNLL-
 
                     }
-                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...           ||  LNLS-
+                    else if(char_track[3] > 31 && char_track[3] <= 37) {                                              // If fourth character is a symbol...      ||  LNLS-
 
                     } else {
 
@@ -101,8 +111,9 @@ public class pw_check {
 
         }
 
+        // Search if password is in DLB of dictionary words, and if so, return
         printer.println(password+","+Double.toString(System.currentTimeMillis() - start_time));       // Print password,time to all_passwords.txt
         validPasswords(printer,alphabet,char_track,start_time,password);                                  // Onto the next password!
         return;
-    }
-}`
+    }*/
+}
