@@ -42,7 +42,10 @@ public class pw_check {
     //    TO DO: Work out a recursive implementation for validPasswords password enumeration, make RWAY trie   //
     //                                                                                                         //
     //          - Prune out all passwords that include any of Strings in all_passwords.txt as                  //
-    //              well as their variations with numerical/symbolic substitutions.                            //
+    //              well as their variations with numerical/symbolic substitutions.
+    //          - Clean up indenting/brackets within conditional framework.
+    //          - Reset char_track addresses correctly once they go out of bounds.
+    //          - Trudge through insert statements
     //                                                                                                         //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -196,9 +199,6 @@ public class pw_check {
                 }
             }
         }
-
-        if(char_track[0] > 37) return;
-
 
         // Make sure password does not contain a DLB tree path as a substring
         printer.println(password+","+Double.toString(System.currentTimeMillis() - start_time));       // Print password,time to all_passwords.txt
