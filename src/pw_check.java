@@ -46,6 +46,8 @@ public class pw_check {
     //          - Clean up indenting/brackets within conditional framework.
     //          - Reset char_track addresses correctly once they go out of bounds.
     //          - Trudge through insert statements
+    //          - Make sure that at least one of each character category is represented in password.
+    //                aka passwords must all have a letter, number, and symbol in them.
     //                                                                                                         //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,19 +57,16 @@ public class pw_check {
             if (char_track[1] <= 23) {                               // If second character is a letter...              ||    LL---
                 if (char_track[2] <= 23) {                               // If third character is a letter...           ||      LLL--
                     if (char_track[3] > 23 && char_track[3] <= 31) {         // If fourth character is a number...      ||        LLLN-
-                        if (char_track[4] > 23 && char_track[4] <= 31)       // Iterate through next number.
+                        if (char_track[4] > 31 && char_track[4] <= 37)           // Iterate through next symbol.        ||          LLLNS
                             password.insert(4, alphabet[char_track[4]++]);
-                        else if (char_track[4] > 31 && char_track[4] <= 37)  // Iterate through next symbol.
-                            password.insert(4, alphabet[char_track[4]++]);
-
                     } else if (char_track[3] > 31 && char_track[3] <= 37) {  // If fourth character is a symbol...      ||        LLLS-
-                        if (char_track[4] > 23 && char_track[4] <= 31)       // Iterate through all numbers.
-                            password.insert(4, alphabet[char_track[4]++]);
-                        if (char_track[4] > 31 && char_track[4] <= 37)       // Iterate through all symbols.
+                        if (char_track[4] > 23 && char_track[4] <= 31)           // Iterate through all numbers.        ||          LLLSN
                             password.insert(4, alphabet[char_track[4]++]);
                     }
                 } else if (char_track[2] > 23 && char_track[2] <= 31) {  // If third character is a number...           ||      LLN--
                     if (char_track[3] <= 23) {                               // If fourth character is a letter...      ||        LLNL-
+                        if (char_track[4] > 31 && char_track[4] <= 37)
+                            password.insert(4, alphabet[char_track[4]++]);
                     } else if (char_track[3] > 23 && char_track[3] <= 31) {  // If fourth character is a number...      ||        LLNN-
                     } else if (char_track[3] > 31 && char_track[3] <= 37) {  // If fourth character is a symbol...      ||        LLNS-
                     } else ;
