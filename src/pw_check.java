@@ -60,12 +60,12 @@ public class pw_check {
                         if (char_track[4] > 31 && char_track[4] <= 37)           // Iterate through next symbol.        ||          LLLNS
                             password.insert(4, alphabet[char_track[4]++]);
                     } else if (char_track[3] > 31 && char_track[3] <= 37) {  // If fourth character is a symbol...      ||        LLLS-
-                        if (char_track[4] > 23 && char_track[4] <= 31)           // Iterate through all numbers.        ||          LLLSN
+                        if (char_track[4] > 23 && char_track[4] <= 31)           // Iterate through next symbol.        ||          LLLSN
                             password.insert(4, alphabet[char_track[4]++]);
                     }
                 } else if (char_track[2] > 23 && char_track[2] <= 31) {  // If third character is a number...           ||      LLN--
                     if (char_track[3] <= 23) {                               // If fourth character is a letter...      ||        LLNL-
-                        if (char_track[4] > 31 && char_track[4] <= 37)
+                        if (char_track[4] > 31 && char_track[4] <= 37)          // Iterate through next symbol.
                             password.insert(4, alphabet[char_track[4]++]);
                     } else if (char_track[3] > 23 && char_track[3] <= 31) {  // If fourth character is a number...      ||        LLNN-
                     } else if (char_track[3] > 31 && char_track[3] <= 37) {  // If fourth character is a symbol...      ||        LLNS-
@@ -107,7 +107,7 @@ public class pw_check {
                     if (char_track[3] <= 23) {                               // If fourth character is a letter...      ||        LSSL-
                     } else if (char_track[3] > 23 && char_track[3] <= 31) {  // If fourth character is a number...      ||        LSSN-
                     }
-                }
+                } else; // Duplicate code warnings are pissing me off so this is very very temporary.
             }
         }
         else if(char_track[0] > 23 && char_track[0] <= 31) {     // If first character is a number...                   ||  N----
@@ -151,7 +151,7 @@ public class pw_check {
                     if(char_track[3] <= 23) {                                // If fourth character is a letter...      ||        NSSL-
                     } else if(char_track[3] > 23 && char_track[3] <= 31) {   // If fourth character is a number...      ||        NSSN-
                     }
-                }
+                } else; // Duplicate code warnings are pissing me off so this is very very temporary.
             }
         }
         else if (char_track[0] > 31 && char_track[0] <= 37){     // If first character is a symbol...                   ||  S----
@@ -199,9 +199,15 @@ public class pw_check {
             }
         }
 
+        if(char_track[0] > 37) return;
+        if(char_track[1] > 37) char_track[1] = 0;
+        if(char_track[2] > 37) char_track[2] = 0;
+        if(char_track[3] > 37) char_track[3] = 0;
+        if(char_track[4] > 37) char_track[4] = 0;
+
         // Make sure password does not contain a DLB tree path as a substring
         printer.println(password+","+Double.toString(System.currentTimeMillis() - start_time));       // Print password,time to all_passwords.txt
-        validPasswords(printer,bad_passwords,alphabet,char_track,start_time,password);                   // Onto the next password!
+        validPasswords(printer,bad_passwords,alphabet,char_track,start_time,password);                // Onto the next password!
         return;
     }
 }
