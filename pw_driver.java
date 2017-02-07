@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.lang.NumberFormatException;
 import java.io.PrintWriter;
 import java.util.Stack;
+import java.util.Set;
 
 public class pw_driver {
 
@@ -11,30 +12,24 @@ public class pw_driver {
 
 	public static void main(String args[]) throws FileNotFoundException {
 
-		StringBuilder password = new StringBuilder();                           // We choose a StringBuilder for it's mutability while still retaining the functionality of a String object
-        printer = new PrintWriter(new File("all_passwords.txt"));   // My dude Pringus will let us write all of our password/time combos to a file! How cool of him!
+        Stack<pw_stats> stack = new Stack<pw_stats>();                  // Stack will hold password data between calls
+	    StringBuilder password = new StringBuilder();                   // We choose a StringBuilder for it's mutability while still retaining the functionality of a String object
+        printer = new PrintWriter(new File("all_passwords.txt"));       // My dude Pringus will let us write all of our password/time combos to a file! How cool of him!
 
-        Stack<pw_stats> stack = new Stack<pw_stats>();
-        char[] alphabet = new char[] {'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'l',                    // a, i , 1, and 4 are pruned due to a & i's inclusion in all_passwords.txt and 1 & 4 being valid substitutions for said characters
-                                      'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-                                      'w', 'x', 'y', 'z', '0', '2', '3', '5', '6', '7',
-                                      '8', '9', '!', '@', '$', '_', '*', '^'};
-
-       passwordSetup(stack,alphabet,password);
-
+        passwordSetup(stack,alphabet,password);
 	}
 
     private static void passwordSetup(Stack<pw_stats> stack, char[] alphabet, StringBuilder password) {
         pw_stats stats = new pw_stats();
         
-       // Initialize to first possible combination 
-        password.insert(0,alphabet[0]);
-        password.insert(1,alphabet[0]);
-        password.insert(2,alphabet[0]);
-        password.insert(3,alphabet[24]);
-        password.insert(4,alphabet[31]);
+       // Initialize to first possible combination of characters (Letter, Letter, Letter, Number, Symbol [LLLNS])
+        password.insert(0,'b');
+        password.insert(1,'b');
+        password.insert(2,'b');
+        password.insert(3,'0');
+        password.insert(4,'!');
         
-       // Initialize password content trackers to correspond with first possible combination 
+       // Initialize password content trackers to correspond with first possible combination (LLLNS)
         stats.setLetterAmt(3);
         stats.setNumberAmt(1);
         stats.setSymbolAmt(1);
@@ -48,11 +43,8 @@ public class pw_driver {
 
        pw_stack stats = stack.pop();
 
-        if(stats.getCharsLeft() == 0) {
-            if(){
-
-            }
-            else if(
+        if (stats.getCharsLeft() == 0) {
+            
         }
         return;
     }
@@ -61,11 +53,45 @@ public class pw_driver {
         return (c >= 'a' && c <= 'z');
     }
 
+    private static char nextLetter(char c) {
+        if (c >= 'b' && c < 'z') {
+            c++;
+            if(c == 'i') 
+                c++;
+            return c;
+        } else if (c == 'z') 
+            return 'b';
+    }
+
     private static boolean isNumber(char c) {
         return (c >= '0' && c <= '9');
     }
 
+    private static char nextNumber(char c) {
+        if (c >= '0' && c < '9') {
+            c++;
+            if(c == 1 || c == 4)
+                c++;
+            return c;
+        } 
+        else (c == '9') return '0';
+            
+    }
+
     private static boolean isSymbol(char c) {
-        return (c >= '!' && c <= '/');
+        return (c >= '!' || c == '@' || c == '$' || c == '^' || c == '_' || c == '*');
+    }
+
+    private static char nextSymbol(char c) {
+             if (c == '!') return '@';
+        else if (c == '@') return '$';
+        else if (c == '$') return '^';
+        else if (c == '^') return '_';
+        else if (c == '_') return '*';
+        else if (c == '*') return '!';
+        else {
+            System.out.println("Error in nextSymbol");
+            return c;
+        }
     }
 }

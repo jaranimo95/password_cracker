@@ -17,13 +17,14 @@ public class Dtrie extends Dnode {
     */
 
     public void insert(String s) {
-        char c;                                                 // Holds individual characters read from key
-        Dnode sub = new Dnode();                               //
-        Dnode current = root;                                // Used to step through DLB branches, naturally starting at the root
-        StringBuilder key = new StringBuilder(s);           // Holds key in a mutable format for easier processing
-                                                           //
-        for (int i = 0; i < key.length(); i++) {          // For every character of the specified key...
-            c = key.charAt(i);                           // Get ith character.
+        char c;                                                              // Holds individual characters read from key
+        Dnode sub = new Dnode();                               
+        Dnode current = root;                                              // Used to step through DLB branches, naturally starting at the root
+        StringBuilder key = new StringBuilder(s.toLowerCase());           // Holds key in a mutable format for easier processing
+
+                                                       
+        for (int i = 0; i < key.length(); i++) {                       // For every character of the specified key...
+            c = key.charAt(i);                                        // Get ith character.
             if(current.isEmpty()) {
                 current.setData(c);
             } else if(current.getData() != c) {
@@ -47,7 +48,7 @@ public class Dtrie extends Dnode {
                 sub.setChild(current.getChild()); 
             }
             else if(current.getData() == 's') { 
-                sub = new Dnode('5');
+                sub = new Dnode('$');
                 current.setPeer(sub); 
                 sub.setChild(current.getChild());  
             }
@@ -86,7 +87,6 @@ public class Dtrie extends Dnode {
                 if (current == null) return false;             // If peer doesn't exist, neither does key
             }
             current = current.getChild();
-            System.out.print
             if(current == null) return false;
             i++;
         }
