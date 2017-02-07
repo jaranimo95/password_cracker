@@ -8,8 +8,8 @@ public class pw_check {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        double start_time = System.currentTimeMillis();                                   // Base time used in calculating how long it takes to reach any given password during brute force enumeration
-        StringBuilder password = new StringBuilder();                                     // We choose a StringBuilder for it's mutability while still retaining the functionality of a String object
+        double start_time = System.currentTimeMillis();                         // Base time used in calculating how long it takes to reach any given password during brute force enumeration
+        StringBuilder password = new StringBuilder();                           // We choose a StringBuilder for it's mutability while still retaining the functionality of a String object
         PrintWriter pringus = new PrintWriter(new File("all_passwords.txt"));   // My dude Pringus will let us write all of our password/time combos to a file! How cool of him!
 
         int[] char_track = {0,0,0,24,24};                                                                 // Will help us keep track of what category (letter, number, or symbol) a given character of our password belongs to. Initialized to first legal combination
@@ -18,7 +18,7 @@ public class pw_check {
                                      'w', 'x', 'y', 'z', '0', '2', '3', '5', '6', '7',
                                      '8', '9', '!', '@', '$', '_', '*', '^'};
                                                                                                           // Initialized to our password's corresponding addresses in the alphabet array (on a per character, that is)
-        pringus.println(password+","+Double.toString(System.currentTimeMillis() - start_time));        // Print password,time to all_passwords.txt
+        pringus.println(password+","+Double.toString(System.currentTimeMillis() - start_time));           // Print password,time to all_passwords.txt
        // Enumerate all possible passwords
         validPasswords(pringus,badPasswords(),alphabet,char_track,start_time,password);                   // Send through PrintWriter, DLB, Related Arrays, Start Time, and Stringbuilder objects to help conserve memory (since validPasswords is recursive)
 
@@ -29,12 +29,12 @@ public class pw_check {
     private static Dtrie badPasswords() throws FileNotFoundException {
 
         Scanner dictionary = new Scanner(new File("dictionary.txt"));       // Create scanner to read text out of dictionary file
-        Dtrie dlb = new Dtrie();                                                      // Create trie to be populated by data from scanner output
-        for(int i = 0; i < 500; i++) {                                                // Read out each line from dictionary file and insert into trie
+        Dtrie dlb = new Dtrie();                                            // Create trie to be populated by data from scanner output
+        for(int i = 0; i < 500; i++) {                                      // Read out each line from dictionary file and insert into trie
             String s = dictionary.nextLine();
             dlb.insert(s);
         }
-        return dlb;                                                                   // Return newly-populated trie
+        return dlb;   // Return newly-populated trie
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,15 +199,24 @@ public class pw_check {
             }
         }
 
-        if(char_track[0] > 37) return;
-        if(char_track[1] > 37) char_track[1] = 0;
-        if(char_track[2] > 37) char_track[2] = 0;
-        if(char_track[3] > 37) char_track[3] = 0;
-        if(char_track[4] > 37) char_track[4] = 0;
+        // Since we're using char_track to treat out password like a number system, its digits will roll over
+        //    in much the same way as numbers do once their base has been reach at an arbitrary digit. Bc of
+        //    this, we can reliably manage our password enumeration based off of this predictable behaviour.
+        // We can see that the highest address in char_track will be our one's digit, with each descending
+        //    address being our 10's, 100's, 1000's, etc. Once we increment the highest digit (char_track[0])
+        //    past the roll over point of 37, we have enumerated all possible passwords and so we can stop recursion.
+
+        for(int i = 4; i >= 0; i--) {       // For each position in char_track[] (is of length 5, and we're checking from furthest address up)
+            if(char_track[i] > 37){         // If current position is past the possible bounds (last value at address 37 in alphabet[])
+                if(i == 0) return;              // If character position that's out of bounds is first character, return bc you've checked all passwords)
+                char_track[i] = 0;          // Rollback current position of char to 0
+                char_track[i-1]++;          // Increment next ascending character by 1
+            }
+        }
 
         // Make sure password does not contain a DLB tree path as a substring
         printer.println(password+","+Double.toString(System.currentTimeMillis() - start_time));       // Print password,time to all_passwords.txt
         validPasswords(printer,bad_passwords,alphabet,char_track,start_time,password);                // Onto the next password!
-        return;
+        return;                                                                                       // Can only be reached once all passwords have been enumerated, so nice job you're all done!
     }
 }
