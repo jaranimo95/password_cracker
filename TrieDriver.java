@@ -40,14 +40,16 @@ public class TrieDriver
         if(result == true) System.out.println("-----------Found it!");
         else               System.out.println("-----------Not found.");
 
-        /*Scanner dictionary = new Scanner(new File("dictionary.txt"));       // Create scanner to read text out of dictionary file
+        Scanner dictionary = new Scanner(new File("dictionary.txt"));       // Create scanner to read text out of dictionary file
         String s;
         for(int i = 0; i < 500; i++) {                                      // Read out each line from dictionary file and insert into trie
             s = dictionary.nextLine();
             trie.insert(s);
-            System.out.println("\n"+s);
-            if(trie.search(s)) System.out.println("-----------Found it!");
-            else               System.out.println("-----------Not found."); 
-        }*/
+            if(s.length() <=5){
+                System.out.println("\n"+s);
+                if(trie.search(s)) System.out.println("-----------Found it!");
+                else               System.out.println("--------------------Not found."); 
+            }
+        }
     }
 }
