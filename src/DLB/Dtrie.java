@@ -3,6 +3,7 @@ package DLB;
 import java.lang.StringBuilder;
 
 public class Dtrie extends Dnode {
+
     private Dnode root;
 
     // Null Constructor
@@ -20,7 +21,6 @@ public class Dtrie extends Dnode {
     public void insert(String s) {
         char c;                                                 // Holds individual characters read from key
         Dnode sub = new Dnode();                               //
-        boolean subFlag = false;                              // False if current.getData() doesn't
         Dnode current = root;                                // Used to step through DLB branches, naturally starting at the root
         StringBuilder key = new StringBuilder(s);           // Holds key in a mutable format for easier processing
                                                            //
@@ -43,17 +43,11 @@ public class Dtrie extends Dnode {
             }
 
             // Preventing against substituting numbers for letter in bad passwords
-            if(current.getData() == 't'){ sub = new Dnode('7'); subFlag = true; }
-            else if(current.getData() == 's'){ sub = new Dnode('5'); subFlag = true; }
-            else if(current.getData() == 'l'){ sub = new Dnode('1'); subFlag = true; }
-            else if(current.getData() == 'o'){ sub = new Dnode('0'); subFlag = true; }
-            else if(current.getData() == 'e'){ sub = new Dnode('3'); subFlag = true; }
-
-            if(subFlag) {
-                current.setPeer(sub);
-                sub.setChild(current.getChild());
-                subFlag = false;
-            }
+            if(current.getData() == 't'){ current.setPeer(new Dnode('7')); sub.setChild(current.getChild()); }
+            else if(current.getData() == 's'){ current.setPeer(new Dnode('5')); sub.setChild(current.getChild()); }
+            else if(current.getData() == 'l'){ current.setPeer(new Dnode('1')); sub.setChild(current.getChild()); }
+            else if(current.getData() == 'o'){ current.setPeer(new Dnode('0')); sub.setChild(current.getChild()); }
+            else if(current.getData() == 'e'){ current.setPeer(new Dnode('3')); sub.setChild(current.getChild());  }
 
             current = current.getChild();
         }

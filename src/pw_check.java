@@ -7,10 +7,8 @@ import java.io.PrintWriter;
 public class pw_check {
 
     public static void main(String[] args) throws FileNotFoundException {
-
-        Dtrie no_no_words = badPasswords();
-        // Enumerate all possible passwords
-        validPasswords(no_no_words);                   // Send through PrintWriter, DLB, Related Arrays, Start Time, and Stringbuilder objects to help conserve memory (since validPasswords is recursive)
+       // Enumerate all possible passwords
+        validPasswords();                   // Send through PrintWriter, DLB, Related Arrays, Start Time, and Stringbuilder objects to help conserve memory (since validPasswords is recursive)
 
        // ...in progress... \\
 
@@ -41,7 +39,7 @@ public class pw_check {
     //                                                                                                         //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private static void validPasswords(Dtrie no_no_words) throws FileNotFoundException {
+    private static void validPasswords() throws FileNotFoundException {
 
         double start_time = System.currentTimeMillis();                         // Base time used in calculating how long it takes to reach any given password during brute force enumeration
         StringBuilder password = new StringBuilder();                           // We choose a StringBuilder for it's mutability while still retaining the functionality of a String object
@@ -54,8 +52,9 @@ public class pw_check {
                 '8', '9', '!', '@', '$', '_', '*', '^'};
 
         while(true){
-            if (char_track[0] <= 23) {                               // If first character is a letter...                   ||  L----
-                if (char_track[1] <= 23) {                               // If second character is a letter...              ||    LL---
+
+            if (char_track[0] <= 23) {                               // If first character is a letter...                   ||  L----                
+                if (char_track[1] <= 23) {                               // If second character is a letter...              ||    LL---                
                     if (char_track[2] <= 23) {                               // If third character is a letter...           ||      LLL--
                         if (char_track[3] > 23 && char_track[3] <= 31) {         // If fourth character is a number...      ||        LLLN-
                             if (char_track[4] > 31 && char_track[4] <= 37)           // Iterate through next symbol.        ||          LLLNS
@@ -211,9 +210,11 @@ public class pw_check {
                 if(char_track[i] > 37){                            // If current position is past the possible bounds (last value at address 37 in alphabet[])
                     if(i == 0) return;                               // If character position that's out of bounds is first character, return bc you've checked all passwords)
                     char_track[i] = 0;                             // Roll back current position of char to 0
-                    password.insert(i,++char_track[i-1]);          // Increment next ascending character by 1
+                    char_track[i-1]++;                             // Increment next ascending character by 1
                 }
             }
+
+            System.out.println(password+","+Double.toString(System.currentTimeMillis() - start_time));    
 
             printer.println(password+","+Double.toString(System.currentTimeMillis() - start_time));       // Print password,time to all_passwords.txt
         }
