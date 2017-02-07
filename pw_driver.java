@@ -36,13 +36,12 @@ public class pw_driver {
         stats.setCharsLeft(0);
         
         stack.push(stats);                          // Push password stats onto stack
-        validPasswords(stack,alphabet,password);    // Call password enumeration method
+        validPasswords(stack,password);             // Call password enumeration method
     }    
 
-    private static void validPasswords(Stack<pw_stats> stack, char[] alphabet, StringBuilder password) {
+    private static void validPasswords(Stack<pw_stats> stack, StringBuilder password) {
 
-       pw_stack stats = stack.pop();
-
+        pw_stack stats = stack.pop();
         if (stats.getCharsLeft() == 0) {
             
         }
@@ -50,17 +49,16 @@ public class pw_driver {
     }
 
     private static boolean isLetter(char c) {
-        return (c >= 'a' && c <= 'z');
+        return (c >= 'b' && c <= 'z');
     }
 
     private static char nextLetter(char c) {
-        if (c >= 'b' && c < 'z') {
+        if (c >= 'b' && c < 'z') {              // Won't contain 'a' since it is pruned out
             c++;
-            if(c == 'i') 
-                c++;
+            if(c == 'i') c++;                   // Skip over 'i' for same reason
             return c;
-        } else if (c == 'z') 
-            return 'b';
+        } 
+        else return '#';
     }
 
     private static boolean isNumber(char c) {
@@ -69,12 +67,11 @@ public class pw_driver {
 
     private static char nextNumber(char c) {
         if (c >= '0' && c < '9') {
-            c++;
-            if(c == 1 || c == 4)
-                c++;
-            return c;
+            if(c == '0') c++;
+            if(c == '3') c++;
+            return ++c;
         } 
-        else (c == '9') return '0';
+        else return '#';
             
     }
 
@@ -88,10 +85,6 @@ public class pw_driver {
         else if (c == '$') return '^';
         else if (c == '^') return '_';
         else if (c == '_') return '*';
-        else if (c == '*') return '!';
-        else {
-            System.out.println("Error in nextSymbol");
-            return c;
-        }
+        else               return '#';
     }
 }
