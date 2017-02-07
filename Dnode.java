@@ -1,5 +1,3 @@
-package DLB;
-
 public class Dnode
 {
     private Dnode child, peer;  // References for Trie Navigation

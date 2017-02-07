@@ -1,5 +1,3 @@
-package DLB;
-
 import java.lang.StringBuilder;
 
 public class Dtrie extends Dnode {
@@ -43,11 +41,31 @@ public class Dtrie extends Dnode {
             }
 
             // Preventing against substituting numbers for letter in bad passwords
-            if(current.getData() == 't'){ current.setPeer(new Dnode('7')); sub.setChild(current.getChild()); }
-            else if(current.getData() == 's'){ current.setPeer(new Dnode('5')); sub.setChild(current.getChild()); }
-            else if(current.getData() == 'l'){ current.setPeer(new Dnode('1')); sub.setChild(current.getChild()); }
-            else if(current.getData() == 'o'){ current.setPeer(new Dnode('0')); sub.setChild(current.getChild()); }
-            else if(current.getData() == 'e'){ current.setPeer(new Dnode('3')); sub.setChild(current.getChild());  }
+            if(current.getData() == 't') { 
+                sub = new Dnode('7');
+                current.setPeer(sub); 
+                sub.setChild(current.getChild()); 
+            }
+            else if(current.getData() == 's') { 
+                sub = new Dnode('5');
+                current.setPeer(sub); 
+                sub.setChild(current.getChild());  
+            }
+            else if(current.getData() == 'l') { 
+                sub = new Dnode('1');
+                current.setPeer(sub); 
+                sub.setChild(current.getChild()); 
+            }
+            else if(current.getData() == 'o') { 
+                sub = new Dnode('0');
+                current.setPeer(sub); 
+                sub.setChild(current.getChild());  
+            }
+            else if(current.getData() == 'e') { 
+                sub = new Dnode('3');
+                current.setPeer(sub); 
+                sub.setChild(current.getChild());  
+            }
 
             current = current.getChild();
         }
