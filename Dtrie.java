@@ -36,7 +36,6 @@ public class Dtrie extends Dnode {
                     current = current.getPeer();
                 }
             }
-
             if(current.getChild() == null) {
                 current.setChild(new Dnode());
             }

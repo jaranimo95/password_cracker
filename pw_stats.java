@@ -16,8 +16,13 @@ public class pw_stats {
 		start_time = System.currentTimeMillis();
 	}
 
-	public void setCharsLeft(int n) {
-		chars_left = n;
+	public void incCharsLeft() {
+		chars_left++;
+		return;
+	}
+
+	public void decCharsLeft() {
+		chars_left--;
 		return;
 	}
 
@@ -25,17 +30,27 @@ public class pw_stats {
 		return chars_left;
 	}
 
-	public void setLetterAmt(int n) {
-		letters_amt = n;
+				public void incLetterAmt() {
+					letters_amt++;
+					return;
+				}
+
+				public void decLetterAmt() {
+					letters_amt--;
+					return;
+				}
+
+				public int getLetterAmt(){
+					return letters_amt;
+				}
+
+	public void incNumberAmt() {
+		numbers_amt++;
 		return;
 	}
 
-	public int getLetterAmt(){
-		return letters_amt;
-	}
-
-	public void setNumberAmt(int n) {
-		numbers_amt = n;
+	public void decNumberAmt() {
+		numbers_amt--;
 		return;
 	}
 
@@ -43,14 +58,19 @@ public class pw_stats {
 		return numbers_amt;
 	}
 
-	public void setSymbolAmt(int n) {
-		symbols_amt = n;
-		return;
-	}
+				public void incSymbolAmt() {
+					symbols_amt++;
+					return;
+				}
 
-	public int getSymbolAmt(){
-		return symbols_amt;
-	}
+				public void decSymbolAmt() {
+					symbols_amt--;
+					return;
+				}
+
+				public int getSymbolAmt(){
+					return symbols_amt;
+				}
 
 	public double getStartTime() {
 		return start_time;
