@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.NumberFormatException;
 import java.io.PrintWriter;
 
 // For password,time search symbol table: have password be the key and time be the value. Can use any implementation we want for symbol table.
@@ -29,12 +28,68 @@ public class pw_driver {
 
         currentIndex = password.length() - stats.getCharsLeft();
 
-        if (currentIndex == 0 && currentIndex == 1) {                                                                                 // If dealing with first character
-            if (stats.getCategory(currentIndex) == 0) password.insert(currentIndex,nextLet(password.chatAt(currentIndex)));           // If first character is a letter, go to next letter
-            else if (stats.getCategory(currentIndex) == 1) password.insert(currentIndex,nextNum(password.chatAt(currentIndex)));      // If first character is a number, go to next number
-            else if (stats.getCategory(currentIndex) == 2) password.insert(currentIndex,nextSym(password.chatAt(currentIndex)));      // If first character is a symbol, go to next symbol
+        if (currentIndex == 0 && currentIndex == 1) {                                          // If dealing with first and second character
+                 if (stats.getCategory(currentIndex) == 0) 
+                    password.insert(currentIndex,nextLet(password.chatAt(currentIndex)));      // If character is a letter, go to next letter
+            else if (stats.getCategory(currentIndex) == 1) 
+                    password.insert(currentIndex,nextNum(password.chatAt(currentIndex)));      // If character is a number, go to next number
+            else if (stats.getCategory(currentIndex) == 2) 
+                    password.insert(currentIndex,nextSym(password.chatAt(currentIndex)));      // If character is a symbol, go to next symbol
             
-            if(password.charAt(0) == '#') {
+            if(password.charAt(0) == '#') {                                                    // If end of legal chars have been reached
+                if (!stats.incCategory(currentIndex)) {                                   // And if end of character categories have been reached
+                    if (currentIndex == 0) return;                                         // If first character, return to end enumeration.
+                    else if (currentIndex == 1) {
+                        password.charAt(1) = '+';
+                        stats.incCharsLeft();
+                        return;
+                    }    
+                }
+                else if (stats.getCategory() == 1) {                                           // Else if new category is numerical
+                    stats.decLetAmt();                                                         // Decrement amount of letters since you've already enumerated them all
+                    stats.incNumAmt();                                                         // Increment amount of numbers since you will be enumerating them next
+                } 
+                else if (stats.getCategory() == 2) { // Else if new category is symbolic, do same thing as above essentially
+                    stats.decNumAmt();
+                    stats.incSymAmt();
+                }
+                password.charAt(currentIndex) = '+'; // Reset current character to empty state '+'
+            }
+        }
+        else if (currentIndex == 2) {                                                           // If dealing with third character
+                 if (stats.getCategory(currentIndex) == 0)                                      // If character is a letter, go to next letter
+                    password.insert(currentIndex,nextLet(password.chatAt(currentIndex)));
+            else if (stats.getCategory(currentIndex) == 1 && stats.getNumAmt < 2) 
+                    password.insert(currentIndex,nextNum(password.chatAt(currentIndex)));       
+            else if (stats.getCategory(currentIndex) == 2 && stats.getSymAmt < 2) 
+                    password.insert(currentIndex,nextSym(password.chatAt(currentIndex)));       
+
+            if(password.charAt(2) == '#') {
+                if (!stats.incCategory()) {
+                    password.charAt(2) = '+';
+                    stats.incCharsLeft();
+                    return;
+                }
+                else if (stats.getCategory() == 1) {
+                    stats.decLetAmt();
+                    stats.incNumAmt();
+                } 
+                else if (stats.getCategory() == 2) {
+                    stats.decNumAmt();
+                    stats.incSymAmt();
+                }
+                password.charAt(0) = '+';
+            }
+        }
+        else if (currentIndex == 3) {
+                 if (stats.getCategory(currentIndex) == 0 && stats.getLetAmt < 3) 
+                    password.insert(currentIndex,nextLet(password.chatAt(currentIndex)));
+            else if (stats.getCategory(currentIndex) == 1 && stats.getNumAmt < 2) 
+                    password.insert(currentIndex,nextNum(password.chatAt(currentIndex)));
+            else if (stats.getCategory(currentIndex) == 2 && stats.getSymAmt < 2) 
+                    password.insert(currentIndex,nextSym(password.chatAt(currentIndex)));
+            
+            if(password.charAt(2) == '#') {
                 if (!stats.incCategory()) return;
                 else if (stats.getCategory() == 1) {
                     stats.decLetAmt();
@@ -47,24 +102,6 @@ public class pw_driver {
                 password.charAt(0) = '+';
             }
         }
-        else if (currentIndex == 2) {
-            if (stats.getCategory(currentIndex) == 0 && stats.getLetAmt < 3) password.insert(currentIndex,nextLet(password.chatAt(currentIndex)));
-            else if (stats.getCategory(currentIndex) == 1 && stats.getNumAmt < 2) password.insert(currentIndex,nextNum(password.chatAt(currentIndex)));      // If first character is a number, go to next number
-            else if (stats.getCategory(currentIndex) == 2 && stats.getSymAmt < 2) password.insert(currentIndex,nextSym(password.chatAt(currentIndex)));      // If first character is a symbol, go to next symbol
-            
-            if(password.charAt(0) == '#') {
-                if (!stats.incCategory()) return;
-                else if (stats.getCategory() == 1) {
-                    stats.decLetAmt();
-                    stats.incNumAmt();
-                } 
-                else if (stats.getCategory() == 2) {
-                    stats.decNumAmt();
-                    stats.incSymAmt();
-                }
-                password.charAt(0) = '+';
-            }
-
         validPasswords(stats,password);
         return;
     }

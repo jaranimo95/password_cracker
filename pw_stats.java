@@ -15,14 +15,14 @@ public class pw_stats {
 		category = {0,0,0,1,2};		// 0 = letter, 1 = number, 2 = symbol. We start password at bbb0!, so we initialize the array to reflect that
 
 		 chars_left = 1;	     	// Initialized to 1 since we will constantly be editing the last character, it makes sense trust me lol
-		letters_amt = 0;
-		numbers_amt = 0;
-		symbols_amt = 0;
+		letters_amt = 3;
+		numbers_amt = 1;
+		symbols_amt = 1;
 		 start_time = System.currentTimeMillis();
 	}
 
 	public int getCategory(int currentIndex) {
-		return category[currentIndex];
+		return this.category[currentIndex];
 	}
 
 	public boolean incCategory(int currentIndex) {
@@ -31,7 +31,7 @@ public class pw_stats {
 			category[currentIndex] = 0;				// Roll back to 0
 			return false;
 		}
-		return true;;
+		return true;
 	}
 
 	public void incCharsLeft() {
@@ -45,7 +45,7 @@ public class pw_stats {
 	}
 
 	public int getCharsLeft(){
-		return chars_left;
+		return this.chars_left;
 	}
 
 				public void incLetAmt() {
@@ -59,7 +59,7 @@ public class pw_stats {
 				}
 
 				public int getLetAmt(){
-					return letters_amt;
+					return this.letters_amt;
 				}
 
 	public void incNumAmt() {
@@ -73,7 +73,7 @@ public class pw_stats {
 	}
 
 	public int getNumAmt(){
-		return numbers_amt;
+		return this.numbers_amt;
 	}
 
 				public void incSymAmt() {
@@ -87,10 +87,10 @@ public class pw_stats {
 				}
 
 				public int getSymAmt(){
-					return symbols_amt;
+					return this.symbols_amt;
 				}
 
 	public double getStartTime() {
-		return start_time;
+		return this.start_time;
 	}
 }
