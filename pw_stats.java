@@ -2,18 +2,36 @@
 
 public class pw_stats {
 
-	private int chars_left;
-	private int letters_amt;
-	private int numbers_amt;
-	private int symbols_amt;
-	private double start_time;
+	private int[] category;			// Will help us keep track of what category (letter, number, or symbol) or character is currently iterating through
+
+	private int chars_left;			// Amount of characters in empty state, represented by '+' in password
+	private int letters_amt;		// Amount of letters in password at any given time
+	private int numbers_amt;		// Amount of numbers in password at any given time
+	private int symbols_amt;		// Amount of symbols in password at any given time
+	private double start_time;		// Start time of program in milliseconds
 	
 	public pw_stats() {
-		chars_left = 5;
+		
+		category = {0,0,0,1,2};		// 0 = letter, 1 = number, 2 = symbol. We start password at bbb0!, so we initialize the array to reflect that
+
+		 chars_left = 1;	     	// Initialized to 1 since we will constantly be editing the last character, it makes sense trust me lol
 		letters_amt = 0;
 		numbers_amt = 0;
 		symbols_amt = 0;
-		start_time = System.currentTimeMillis();
+		 start_time = System.currentTimeMillis();
+	}
+
+	public int getCategory(int currentIndex) {
+		return category[currentIndex];
+	}
+
+	public boolean incCategory(int currentIndex) {
+		category[currentIndex]++;					// Increment to next category
+		if (category[currentIndex] == 3) {			// If increment past bounds
+			category[currentIndex] = 0;				// Roll back to 0
+			return false;
+		}
+		return true;;
 	}
 
 	public void incCharsLeft() {
@@ -30,45 +48,45 @@ public class pw_stats {
 		return chars_left;
 	}
 
-				public void incLetterAmt() {
+				public void incLetAmt() {
 					letters_amt++;
 					return;
 				}
 
-				public void decLetterAmt() {
+				public void decLetAmt() {
 					letters_amt--;
 					return;
 				}
 
-				public int getLetterAmt(){
+				public int getLetAmt(){
 					return letters_amt;
 				}
 
-	public void incNumberAmt() {
+	public void incNumAmt() {
 		numbers_amt++;
 		return;
 	}
 
-	public void decNumberAmt() {
+	public void decNumAmt() {
 		numbers_amt--;
 		return;
 	}
 
-	public int getNumberAmt(){
+	public int getNumAmt(){
 		return numbers_amt;
 	}
 
-				public void incSymbolAmt() {
+				public void incSymAmt() {
 					symbols_amt++;
 					return;
 				}
 
-				public void decSymbolAmt() {
+				public void decSymAmt() {
 					symbols_amt--;
 					return;
 				}
 
-				public int getSymbolAmt(){
+				public int getSymAmt(){
 					return symbols_amt;
 				}
 
