@@ -19,10 +19,6 @@ public class pw_check {
     public static void main(String[] args) throws FileNotFoundException
     {
 
-        //for(String s : args) {
-          //  if(s == "-find")
-        //}
-
         char[] A = new char[max_length];
         dlb = new DLBTrie();
         start = System.currentTimeMillis();

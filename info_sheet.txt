@@ -23,8 +23,9 @@ Source code file name(s):
 pw_check.java
 pw_stats.java
 DLBNode.java
+RNode.java
 DLBTrie.java
-symbolTable.java
+RTrie.java
 
 Other file name(s) (if relevant):
 
@@ -37,11 +38,28 @@ The password enumeration runs completely. That's it.
 
 Additional comments to the grader:
 
-Took too much time trying to figure out how to enumerate the passwords in any capacity,
-so I was not able to complete the functionality for -check. all_passwords.txt
+Took too much time trying to figure out how to enumerate the passwords in any capacity 
+(which, to my surprise I actually got working lol), but I was not able to start the 
+functionality for -check. For some reason my PrintWriter isn't printing the values of
+my char[] A array which holds the individual characters during enumeration. It seems to
+me as though it is only passing in the address of the array in memory. It worked once I
+assigned it as a new String, which I would then print to the file, but that took up too
+much memory for how I chose to implement recursion so I just said fuck it lol this project
+sucks so bad.
 
-DLB is complete and working, 
-(status of symbol table goes here)
+  - DLB is complete and working. 
+  - Enumeration is working well, but the file it makes is fucking huge and not a great read.
+  - Implemented the symbol table as much as I could before the deadline!
+  - Don't even bother with inputting -find or -check, I didn't have time to throw them in.
+
+I tried to make this cynical in the hopes that it would help alleviate what I would imagine
+to be the crippling pain and agony of grading these projects, and I would literally sell my
+soul to you for a few undeserved points here and there because wow am I going to need them!
+
+If eternal slavery doesn't interest you, I could also buy you something idk I'm desparate at
+this point haha so funny ha ha ha
+
+
 
 
 
