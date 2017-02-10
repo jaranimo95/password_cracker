@@ -22,31 +22,26 @@ Source code file name(s):
 
 pw_check.java
 pw_stats.java
-Dnode.java
-Dtrie.java
+DLBNode.java
+DLBTrie.java
+symbolTable.java
 
 Other file name(s) (if relevant):
 
-
-
-
-
-
-
-Does your program run without error?:
+Does your program run without error?: Yes
 
 If not, what is/are the error(s) and which parts of your program run
 correctly?:
 
-
-
-
-
-
+The password enumeration runs completely. That's it.
 
 Additional comments to the grader:
 
+Took too much time trying to figure out how to enumerate the passwords in any capacity,
+so I was not able to complete the functionality for -check. all_passwords.txt
 
+DLB is complete and working, 
+(status of symbol table goes here)
 
 
 
