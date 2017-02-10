@@ -1,0 +1,6 @@
+I decided to implement an RWAY for the very fast insert and lookup times, which
+was hinted to be a beneficial property in the README file we were given. Most of
+my implementation details are included in the commenting of the file, and I've
+made them incredibly verbose and legibly-formatted. I figured it would be easier
+to detail my approach on a line-to-line basis rather than compress overly-complicated
+approach in a few lines.
